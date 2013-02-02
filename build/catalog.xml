@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1358997570000" signatureChecksum="3212086602" >
+        <def id="com.newpixel.air.nativeextensions:SongPicker" /> 
+        <dep id="com.newpixel.air.nativeextensions:SongPickerEvent" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/newpixel/air/nativeextensions/SongPickerEvent" mod="1359776340000" signatureChecksum="2153618027" >
+        <def id="com.newpixel.air.nativeextensions:SongPickerEvent" /> 
+        <dep id="com.adobe.serialization.json:EzJSON" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONTokenType" mod="1289250120000" signatureChecksum="11639122" >
+        <def id="com.adobe.serialization.json:JSONTokenType" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONTokenizer" mod="1289250120000" signatureChecksum="1675382225" >
+        <def id="com.adobe.serialization.json:JSONTokenizer" /> 
+        <dep id="com.adobe.serialization.json:JSONParseError" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONToken" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONTokenType" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONToken" type="s" /> 
+        <dep id="RegExp" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONParseError" mod="1289250120000" signatureChecksum="2469740052" >
+        <def id="com.adobe.serialization.json:JSONParseError" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Error" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONDecoder" mod="1289250120000" signatureChecksum="2159488088" >
+        <def id="com.adobe.serialization.json:JSONDecoder" /> 
+        <dep id="com.adobe.serialization.json:JSONTokenizer" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONTokenType" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONTokenizer" type="s" /> 
+        <dep id="com.adobe.serialization.json:JSONToken" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONEncoder" mod="1289250120000" signatureChecksum="4062327745" >
+        <def id="com.adobe.serialization.json:JSONEncoder" /> 
+        <dep id="flash.utils:describeType" type="e" /> 
+        <dep id="XML" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/JSONToken" mod="1289250120000" signatureChecksum="1035358705" >
+        <def id="com.adobe.serialization.json:JSONToken" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/adobe/serialization/json/EzJSON" mod="1340155156000" signatureChecksum="126694677" >
+        <def id="com.adobe.serialization.json:EzJSON" /> 
+        <dep id="com.adobe.serialization.json:JSONEncoder" type="e" /> 
+        <dep id="com.adobe.serialization.json:JSONDecoder" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="_1e2c81b6a15a0cc17a51737e6790367e000eae76f6d22283f29ca1ba73962c05_flash_display_Sprite" mod="1359776340790" signatureChecksum="2934536521" >
+        <def id="_1e2c81b6a15a0cc17a51737e6790367e000eae76f6d22283f29ca1ba73962c05_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="64a32b9e029efe4dc761859e0541d3871243bef86994aff60c433d55926c7f01"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

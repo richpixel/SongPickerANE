@@ -1,0 +1,250 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C95AD13D16A73B3C00D2B491 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AD13C16A73B3C00D2B491 /* Foundation.framework */; };
+		C95AD14416A73B3C00D2B491 /* SongPicker_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AD14316A73B3C00D2B491 /* SongPicker_iOS.m */; };
+		C97A879416A74071002AADA4 /* SongPickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C97A879316A74071002AADA4 /* SongPickerHelper.m */; };
+		C9A8DF7F16A8744800C8AE98 /* libSongPicker-iOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = C95AD13916A73B3C00D2B491 /* libSongPicker-iOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C95AD13716A73B3C00D2B491 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Work/[libraries]/songpickerane/build/ios";
+			dstSubfolderSpec = 0;
+			files = (
+				C9A8DF7F16A8744800C8AE98 /* libSongPicker-iOS.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C95AD13916A73B3C00D2B491 /* libSongPicker-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSongPicker-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95AD13C16A73B3C00D2B491 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C95AD14016A73B3C00D2B491 /* SongPicker-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SongPicker-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		C95AD14316A73B3C00D2B491 /* SongPicker_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongPicker_iOS.m; sourceTree = "<group>"; };
+		C97A879116A74063002AADA4 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		C97A879216A74071002AADA4 /* SongPickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongPickerHelper.h; sourceTree = "<group>"; };
+		C97A879316A74071002AADA4 /* SongPickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongPickerHelper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C95AD13616A73B3C00D2B491 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95AD13D16A73B3C00D2B491 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C95AD12E16A73B3C00D2B491 = {
+			isa = PBXGroup;
+			children = (
+				C95AD13E16A73B3C00D2B491 /* SongPicker-iOS */,
+				C95AD13B16A73B3C00D2B491 /* Frameworks */,
+				C95AD13A16A73B3C00D2B491 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C95AD13A16A73B3C00D2B491 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C95AD13916A73B3C00D2B491 /* libSongPicker-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C95AD13B16A73B3C00D2B491 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C95AD13C16A73B3C00D2B491 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C95AD13E16A73B3C00D2B491 /* SongPicker-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C97A879216A74071002AADA4 /* SongPickerHelper.h */,
+				C97A879316A74071002AADA4 /* SongPickerHelper.m */,
+				C95AD14316A73B3C00D2B491 /* SongPicker_iOS.m */,
+				C95AD13F16A73B3C00D2B491 /* Supporting Files */,
+			);
+			path = "SongPicker-iOS";
+			sourceTree = "<group>";
+		};
+		C95AD13F16A73B3C00D2B491 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C97A879116A74063002AADA4 /* FlashRuntimeExtensions.h */,
+				C95AD14016A73B3C00D2B491 /* SongPicker-iOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C95AD13816A73B3C00D2B491 /* SongPicker-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95AD14716A73B3C00D2B491 /* Build configuration list for PBXNativeTarget "SongPicker-iOS" */;
+			buildPhases = (
+				C95AD13516A73B3C00D2B491 /* Sources */,
+				C95AD13616A73B3C00D2B491 /* Frameworks */,
+				C95AD13716A73B3C00D2B491 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SongPicker-iOS";
+			productName = "SongPicker-iOS";
+			productReference = C95AD13916A73B3C00D2B491 /* libSongPicker-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C95AD13016A73B3C00D2B491 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Richard Lovejoy";
+			};
+			buildConfigurationList = C95AD13316A73B3C00D2B491 /* Build configuration list for PBXProject "SongPicker-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C95AD12E16A73B3C00D2B491;
+			productRefGroup = C95AD13A16A73B3C00D2B491 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C95AD13816A73B3C00D2B491 /* SongPicker-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C95AD13516A73B3C00D2B491 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95AD14416A73B3C00D2B491 /* SongPicker_iOS.m in Sources */,
+				C97A879416A74071002AADA4 /* SongPickerHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C95AD14516A73B3C00D2B491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C95AD14616A73B3C00D2B491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C95AD14816A73B3C00D2B491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SongPicker_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SongPicker-iOS/SongPicker-iOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C95AD14916A73B3C00D2B491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SongPicker_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SongPicker-iOS/SongPicker-iOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C95AD13316A73B3C00D2B491 /* Build configuration list for PBXProject "SongPicker-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95AD14516A73B3C00D2B491 /* Debug */,
+				C95AD14616A73B3C00D2B491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C95AD14716A73B3C00D2B491 /* Build configuration list for PBXNativeTarget "SongPicker-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95AD14816A73B3C00D2B491 /* Debug */,
+				C95AD14916A73B3C00D2B491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C95AD13016A73B3C00D2B491 /* Project object */;
+}
