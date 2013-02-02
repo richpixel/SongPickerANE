@@ -25,14 +25,17 @@ package com.newpixel.air.nativeextensions
 			super(type, bubbles, cancelable);
 			
 			// parse out data fields
-			_jsonResult = pickerResult;
-			if (_jsonResult != "")
+			if (type == SONG_CHOSEN)
 			{
-				var valuePairs:Object = EzJSON.decode(_jsonResult);
-				ID = valuePairs.ID;
-				title = valuePairs.title;
-				artist = valuePairs.artist;
-				duration = valuePairs.duration;
+				_jsonResult = pickerResult;
+				if (_jsonResult != "")
+				{
+					var valuePairs:Object = EzJSON.decode(_jsonResult);
+					ID = valuePairs.ID;
+					title = valuePairs.title;
+					artist = valuePairs.artist;
+					duration = valuePairs.duration;
+				}
 			}
 		}
 		
