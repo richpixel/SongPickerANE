@@ -118,7 +118,10 @@ package
 			var minutes:int = duration / 60;
 			var seconds:int = duration % 60;
 			
-			var msg:String = "id: "+event.ID+"\n"+"title: "+event.title+"\n"+"artist: "+event.artist+"\n"+"duration: ("+minutes+":"+((seconds < 10) ? "0"+seconds : seconds)+")";
+			var msg:String = "ID: "+event.ID+"\n";
+			msg += "title: "+event.title+"\n";
+			msg += "artist: "+event.artist+"\n";
+			msg += "duration: ("+minutes+":"+((seconds < 10) ? "0"+seconds : seconds)+")";
 			
 			_buttons.info.text = msg; 
 			_chosenSongID = event.ID;

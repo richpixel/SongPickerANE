@@ -22,6 +22,7 @@ package com.newpixel.songpicker.functions;
 
 import android.net.Uri;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.util.Log;
 
 import com.adobe.fre.FREContext;
@@ -30,7 +31,7 @@ import com.adobe.fre.FREObject;
 import com.newpixel.songpicker.SongPickerExtension;
 
 
-public class PlaySongFunction implements FREFunction {
+public class PlaySongFunction implements FREFunction, OnCompletionListener {
 
 	public static final String TAG = "PlaySongFunction";
 	
@@ -61,7 +62,7 @@ public class PlaySongFunction implements FREFunction {
 				mp = null;
 			}
 			mp = MediaPlayer.create(SongPickerExtension.appContext, songUri);
-			
+			mp.setOnCompletionListener(this);
 			SongPickerExtension.songMediaPlayer = mp;
 			Log.d(TAG, "created Media Player "+songId);
 		}		
@@ -86,4 +87,11 @@ public class PlaySongFunction implements FREFunction {
 		
 		return null;
 	}
+	
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+  
+    	SongPickerExtension.extensionContext.dispatchStatusEventAsync(SongPickerExtension.SONG_FINISHED, "");
+    }
+	
 }
