@@ -137,17 +137,19 @@ static BOOL observingMediaEvents = NO;
     
     // Return a JSON string
     NSString *chosenSong = [NSString stringWithFormat:@"{\"ID\":\"%@\",\"title\":\"%@\",\"artist\":\"%@\",\"duration\":%d}", ID, title, artist, [duration intValue]];
-    
+ 
+    [mediaPicker dismissViewControllerAnimated:YES completion:NULL];
+
     FREDispatchStatusEventAsync(_context, (uint8_t*)[eventSongChosen UTF8String], (uint8_t*)[chosenSong UTF8String]);
     
-    [mediaPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
 {
-    FREDispatchStatusEventAsync(_context, (uint8_t*)[eventCancelledSongPicker UTF8String], (uint8_t*)[@"" UTF8String]);
     
     [mediaPicker dismissViewControllerAnimated:YES completion:NULL];
+    
+    FREDispatchStatusEventAsync(_context, (uint8_t*)[eventCancelledSongPicker UTF8String], (uint8_t*)[@"" UTF8String]);    
 }
 
 @end
