@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/3.1">
+<application xmlns="http://ns.adobe.com/air/application/3.5">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -229,7 +229,7 @@
     <!-- </android> -->
 	<!-- End of the schema for adding the android specific tags in AndroidManifest.xml file -->
 
-	<android>
+<android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
 			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
@@ -249,9 +249,6 @@
 					together in order to use AIR's NetworkInfo APIs-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
-				<application>
-					<activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-				</application>			    			    
 			</manifest>
 			
 		]]></manifestAdditions>

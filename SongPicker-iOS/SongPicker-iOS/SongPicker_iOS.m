@@ -16,6 +16,8 @@
 #import "FlashRuntimeExtensions.h"
 #import "SongPickerHelper.h"
 
+#define N_FUNCTIONS (5)
+
 SongPickerHelper *songPickerHelper;
 
 //------------------------------------
@@ -100,9 +102,9 @@ void SNG_PKR_ContextInitializer(void* extData, const uint8_t* ctxType, FREContex
                                 uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet)
 {
     //we expose two methods to ActionScript
-	*numFunctionsToTest = 5 ;
+	*numFunctionsToTest = N_FUNCTIONS ;
     
-	FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * 2);
+	FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * N_FUNCTIONS);
 	func[0].name = (const uint8_t*) "pickSong";
 	func[0].functionData = NULL;
     func[0].function = &pickSong;
