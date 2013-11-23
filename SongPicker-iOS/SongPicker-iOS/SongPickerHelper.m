@@ -13,12 +13,14 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#include <math.h>
+
 #import <MediaPlayer/MediaPlayer.h>
 #import "SongPickerHelper.h"
 
 @implementation SongPickerHelper
 
-@synthesize pickedItem = _pickedItem;
+@synthesize avAudioPlayer = _avAudioPlayer;
 
 static NSString *eventSongChosen = @"songChosen";
 static NSString *eventSongFinished = @"songFinished";
@@ -28,8 +30,17 @@ static BOOL observingMediaEvents = NO;
 
 -(void) dealloc
 {
-    [_pickedItem release];
     [super dealloc];
+}
+
+-(id)init
+{
+	self = [super init];
+	if (self)
+	{
+		self.volume = 1.0;
+	}
+	return self;
 }
 
 -(void) pickSongFromMediaLibrary
@@ -58,47 +69,200 @@ static BOOL observingMediaEvents = NO;
         MPMediaQuery *songQuery = [MPMediaQuery songsQuery];
         [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:pid forProperty:MPMediaItemPropertyPersistentID]];
         
+        // make sure a song was found
+        if (!songQuery.items || [songQuery.items count] < 1)
+        {
+            NSLog(@"Can't find song.");
+            return;
+        }
+        
+        // get url of the media item
+        MPMediaItem *item = [songQuery.items objectAtIndex:0];
+        
+        // stop playing
+        if (self.avAudioPlayer)
+        {
+            [self.avAudioPlayer stop];
+            [self.avAudioPlayer release];
+            self.avAudioPlayer = nil;
+        }
+        
         if (musicPlayer.playbackState != MPMusicPlaybackStateStopped)
         {
             [musicPlayer stop];
         }
-        [musicPlayer setQueueWithQuery:songQuery];
-        if (playbackTime > 0)
-        {
-            musicPlayer.currentPlaybackTime = playbackTime;
-        }
-        [musicPlayer play];
         
-        // listen for item change
-        if (!observingMediaEvents)
+        // The volume property has been deprecated in MPMusicPlayerController as of iOS 7
+        // Therefore, use the AVAudioPlayer where possible. However AVAudioPlayer will fail for DRM protected conent.
+        // Fallback to MPMusicPlayerController in that case and hope it works
+        NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
+        if (url)
         {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePlaybackStateChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:musicPlayer];
-            [musicPlayer beginGeneratingPlaybackNotifications];
+            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+            self.avAudioPlayer.delegate = self;
+            self.avAudioPlayer.volume = _volume;
             
-            observingMediaEvents = YES;
+            self.avAudioPlayer.currentTime = playbackTime;
+            [self.avAudioPlayer play];
+            NSLog(@"Playing song %@ from %f with AVAudioPlayer", [url absoluteString], playbackTime);
+        }
+        else
+        {
+            [musicPlayer setQueueWithQuery:songQuery];
+            if (playbackTime > 0)
+            {
+                musicPlayer.currentPlaybackTime = playbackTime;
+            }
+            [musicPlayer play];
+            NSLog(@"Playing song %@ from %f with MPMusicPlayer", [url absoluteString], playbackTime);
+            
+            // listen for item change
+            if (!observingMediaEvents)
+            {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePlaybackStateChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:musicPlayer];
+                [musicPlayer beginGeneratingPlaybackNotifications];
+                
+                observingMediaEvents = YES;
+            }
         }
     }
     else
     {
         // just play current song
-        if (playbackTime >= 0)
+        if (self.avAudioPlayer)
         {
-            musicPlayer.currentPlaybackTime = playbackTime;
+            self.avAudioPlayer.currentTime = playbackTime;
+            if (!self.avAudioPlayer.playing)
+            {
+                [self.avAudioPlayer play];
+            }
+            
         }
-        [musicPlayer play];
+        else
+        {
+            if (playbackTime >= 0)
+            {
+                musicPlayer.currentPlaybackTime = playbackTime;
+            }
+            [musicPlayer play];
+        
+        }
     }
+    
 }
 
 -(void) pauseSong
 {
-    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
-    [musicPlayer pause];
+    if (self.avAudioPlayer)
+    {
+        [self.avAudioPlayer pause];
+    }
 }
 
 -(void) stopSong
 {
+    if (self.avAudioPlayer)
+    {
+        [self.avAudioPlayer stop];
+    }
+    
+}
+
+-(float) volume
+{
+    if (self.avAudioPlayer)
+    {
+        return self.avAudioPlayer.volume;
+    }
+    
     MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
-    [musicPlayer stop];
+    return musicPlayer.volume;
+    
+}
+
+-(void) setVolume:(float)volume
+{
+    _volume = fmin(1.0, fmax(0.0, volume));
+    if (self.avAudioPlayer)
+    {
+        self.avAudioPlayer.volume = _volume;
+    }
+    else
+    {
+        // This causes system volume to change, so don't
+        /*
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+        musicPlayer.volume = _volume;
+        */
+    }
+}
+
+#define     kFadeSteps  20.0
+-(void) fadeOut:(NSTimeInterval)fadeTime
+{
+
+    float originalVolume = self.volume;
+    if (originalVolume == 0)
+        return;
+    
+    NSTimeInterval fireInterval = fadeTime/kFadeSteps;
+    float volumeDecrement = originalVolume/kFadeSteps;
+    
+    self.volume = originalVolume - volumeDecrement;
+    
+    [NSTimer scheduledTimerWithTimeInterval:fireInterval target:self selector:@selector(fadeOutTimerMethod:) userInfo:[NSNumber numberWithFloat:originalVolume] repeats:YES];
+    
+}
+
+- (void)fadeOutTimerMethod:(NSTimer*)theTimer
+{
+    float originalVolume = [(NSNumber*)[theTimer userInfo] floatValue];
+    float volumeDecrement = originalVolume/kFadeSteps;
+    
+    if (self.volume > volumeDecrement)
+    {
+        self.volume = self.volume - volumeDecrement;
+    }
+    else if ( [theTimer isValid] )
+    {
+        [self stopSong];
+        
+        self.volume = originalVolume;
+        
+        [theTimer invalidate];
+    }
+    
+    
+}
+
+-(void) fadeIn:(NSTimeInterval)fadeTime
+{
+    NSTimeInterval fireInterval = fadeTime/kFadeSteps;
+    float originalVolume = self.volume;
+    
+    self.volume = 0;
+    
+    [NSTimer scheduledTimerWithTimeInterval:fireInterval target:self selector:@selector(fadeInTimerMethod:) userInfo:[NSNumber numberWithFloat:originalVolume] repeats:YES];
+    
+}
+
+- (void)fadeInTimerMethod:(NSTimer*)theTimer
+{
+    float originalVolume = [(NSNumber*)[theTimer userInfo] floatValue];
+    float volumeIncrement = originalVolume/kFadeSteps;
+    
+    if (self.volume < originalVolume)
+    {
+        self.volume = self.volume + volumeIncrement;
+    }
+    else if ( [theTimer isValid] )
+    {
+        self.volume = originalVolume;
+        
+        [theTimer invalidate];
+    }
+    
+    
 }
 
 -(void) setContext:(FREContext)ctx
@@ -106,7 +270,14 @@ static BOOL observingMediaEvents = NO;
     _context = ctx;
 }
 
-// playback notifications
+
+// AVAudioPlayerDelegate
+-(void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    FREDispatchStatusEventAsync(_context, (uint8_t*)[eventSongFinished UTF8String], (uint8_t*)[@"" UTF8String]);
+}
+
+// playback notifications for MPMusicPlayerController
 -(void) handlePlaybackStateChanged:(NSNotification *)notification
 {
     MPMusicPlayerController *musicPlayer = notification.object;
@@ -124,16 +295,16 @@ static BOOL observingMediaEvents = NO;
 // MPMediaPickerControllerDelegate
 -(void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
 {
-    // store the last picked item
-    self.pickedItem = [mediaItemCollection.items objectAtIndex:0];
+    // get the last picked item
+    MPMediaItem *pickedItem = [mediaItemCollection.items objectAtIndex:0];
     
     //unsigned long long parsedValue = strtoull([yourString UTF8String], NULL, 0);
     
     // send an event
-    NSString *ID = [NSString stringWithFormat:@"%qi", [[self.pickedItem valueForProperty:MPMediaItemPropertyPersistentID] longLongValue]];
-    NSString *title = [self.pickedItem valueForProperty:MPMediaItemPropertyTitle];
-    NSString *artist = [self.pickedItem valueForProperty:MPMediaItemPropertyArtist];
-    NSNumber *duration = [self.pickedItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSString *ID = [NSString stringWithFormat:@"%qi", [[pickedItem valueForProperty:MPMediaItemPropertyPersistentID] longLongValue]];
+    NSString *title = [pickedItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString *artist = [pickedItem valueForProperty:MPMediaItemPropertyArtist];
+    NSNumber *duration = [pickedItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
     
     // Return a JSON string
     NSString *chosenSong = [NSString stringWithFormat:@"{\"ID\":\"%@\",\"title\":\"%@\",\"artist\":\"%@\",\"duration\":%d}", ID, title, artist, [duration intValue]];
@@ -141,7 +312,7 @@ static BOOL observingMediaEvents = NO;
     [mediaPicker dismissViewControllerAnimated:YES completion:NULL];
 
     FREDispatchStatusEventAsync(_context, (uint8_t*)[eventSongChosen UTF8String], (uint8_t*)[chosenSong UTF8String]);
-    
+  
 }
 
 -(void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker

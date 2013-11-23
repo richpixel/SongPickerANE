@@ -41,11 +41,13 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.getTimer;
 	
 	public class SongPickerExample extends Sprite
 	{
 		private var _buttons:ControlButtons;
 		private var _chosenSongID:String;
+		private var _timeStart:int;
 		
 		public function SongPickerExample()
 		{
@@ -71,10 +73,16 @@ package
 			_buttons.pickSong.btn.addEventListener(MouseEvent.CLICK, pickSongButtonHandler);
 			_buttons.playSong.btn.addEventListener(MouseEvent.CLICK, playSongButtonHandler);
 			_buttons.stopSong.btn.addEventListener(MouseEvent.CLICK, stopSongButtonHandler);
-			
+			_buttons.fadeOutSong.btn.addEventListener(MouseEvent.CLICK, fadeOutSongButtonHandler);
+				
 			_buttons.info.text = "Pick a song on your iOS or Android device...";
 			_buttons.playSong.visible = false;
 			_buttons.stopSong.visible = false;
+			_buttons.fadeOutSong.visible = false;
+			
+			_buttons.volDown.btn.addEventListener(MouseEvent.CLICK, volumeDownButtonHandler);
+			_buttons.volUp.btn.addEventListener(MouseEvent.CLICK, volumeUpButtonHandler);
+			setVolumeText();
 			
 			addChild(_buttons);
 						
@@ -87,6 +95,10 @@ package
 			
 			_buttons.playSong.visible = false;
 			_buttons.stopSong.visible = true;
+			
+			_buttons.fadeOutSong.alpha = 1.0;
+			_buttons.fadeOutSong.visible = true;
+			_buttons.fadeOutSong.enabled = true;
 		}
 
 		protected function stopSongButtonHandler(event:MouseEvent):void
@@ -96,8 +108,44 @@ package
 			
 			_buttons.playSong.visible = true;
 			_buttons.stopSong.visible = false;
+			_buttons.fadeOutSong.visible = false;
 		}
 
+		protected function fadeOutSongButtonHandler(event:MouseEvent):void
+		{
+			if (!_buttons.fadeOutSong.enabled)
+				return;
+			
+			SongPicker.instance.removeEventListener(SongPickerEvent.SONG_FINISHED, songFinishedHandler);
+			SongPicker.instance.fadeOutSong(2.0);
+
+			
+			_buttons.fadeOutSong.enabled = false;
+			
+			_timeStart = getTimer();
+			addEventListener(Event.ENTER_FRAME, fadeDown);
+			
+		}
+		
+		protected function fadeDown(event:Event):void
+		{
+			// fade out button
+			var passed:Number = (getTimer() - _timeStart) / 1000;
+			if (passed >= 2)
+			{
+				_buttons.playSong.visible = true;
+				_buttons.stopSong.visible = false;
+				_buttons.fadeOutSong.visible = false;
+				
+				removeEventListener(Event.ENTER_FRAME, fadeDown);
+			}
+			else
+			{
+				_buttons.fadeOutSong.alpha = (2-passed) / 2;
+			}
+			
+		}
+		
 		protected function pickSongButtonHandler(event:MouseEvent):void
 		{
 			// setup song picker - initializing the native extension is sometimes tempermental so it's best to do this
@@ -109,7 +157,38 @@ package
 			SongPicker.instance.pickSong();
 			
 		}
-				
+		
+		protected function volumeDownButtonHandler(event:MouseEvent):void
+		{
+			var volume:Number = SongPicker.instance.getVolume();
+			if (volume > 0)
+			{
+				volume -= 0.1;
+				SongPicker.instance.setVolume(volume);
+				setVolumeText();
+			}
+			
+		}
+
+		protected function volumeUpButtonHandler(event:MouseEvent):void
+		{
+			var volume:Number = SongPicker.instance.getVolume();
+			if (volume < 1)
+			{
+				volume += 0.1;
+				SongPicker.instance.setVolume(volume);
+				setVolumeText();
+			}
+			
+		}
+		
+		protected function setVolumeText():void
+		{
+			var volume:Number = SongPicker.instance.getVolume();
+			_buttons.volumeTxt.text = "Volume: "+Math.ceil(volume*100)/100;
+			trace("Current volume: ", volume);
+		}
+		
 		// SongPicker event handlers
 		protected function songChooseHandler(event:SongPickerEvent):void
 		{

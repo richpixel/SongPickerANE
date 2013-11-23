@@ -34,6 +34,7 @@
 // helpers
 -(void) setContext:(FREContext)ctx;
 
-@property (nonatomic, retain) AVAudioPlayer *avAudioPlayer;
+@property (nonatomic, retain) MPMediaItem *pickedItem;
+@property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 @property (nonatomic) float volume;
 @end

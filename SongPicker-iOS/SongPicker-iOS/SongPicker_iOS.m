@@ -16,7 +16,7 @@
 #import "FlashRuntimeExtensions.h"
 #import "SongPickerHelper.h"
 
-#define N_FUNCTIONS (5)
+#define N_FUNCTIONS (9)
 
 SongPickerHelper *songPickerHelper;
 
@@ -65,6 +65,57 @@ FREObject stopSong(FREContext ctx, void* funcData, uint32_t argc, FREObject argv
 {
     
     [songPickerHelper stopSong];
+    
+    return NULL;
+    
+}
+
+FREObject getVolume(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    double volume = songPickerHelper.volume;
+    FREObject retVal;
+    if (FRENewObjectFromDouble(volume, &retVal) == FRE_OK)
+    {
+        return retVal;
+    }
+    return NULL;
+    
+}
+
+FREObject setVolume(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    // get the double from the FREObject arg
+    double volume;
+    FREGetObjectAsDouble(argv[0], &volume);
+    
+    // call helper to set the volume
+    songPickerHelper.volume = volume;
+    
+    return NULL;
+    
+}
+
+FREObject fadeOut(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+
+    // get the double fade time out of the element
+    double fadeTime;    // in seconds
+    FREGetObjectAsDouble(argv[0], &fadeTime);
+    
+    [songPickerHelper fadeOut: fadeTime];
+    
+    return NULL;
+    
+}
+
+FREObject fadeIn(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    
+    // get the double fade time out of the element
+    double fadeTime;    // in seconds
+    FREGetObjectAsDouble(argv[0], &fadeTime);
+    
+    [songPickerHelper fadeIn: fadeTime];
     
     return NULL;
     
@@ -120,10 +171,26 @@ void SNG_PKR_ContextInitializer(void* extData, const uint8_t* ctxType, FREContex
 	func[3].name = (const uint8_t*) "stopSong";
 	func[3].functionData = NULL;
 	func[3].function = &stopSong;
-	
-    func[4].name = (const uint8_t*) "init";
+
+	func[4].name = (const uint8_t*) "getVolume";
 	func[4].functionData = NULL;
-	func[4].function = &SNG_PKR_initStub;
+	func[4].function = &getVolume;
+
+	func[5].name = (const uint8_t*) "setVolume";
+	func[5].functionData = NULL;
+	func[5].function = &setVolume;
+
+	func[6].name = (const uint8_t*) "fadeOut";
+	func[6].functionData = NULL;
+	func[6].function = &fadeOut;
+
+	func[7].name = (const uint8_t*) "fadeIn";
+	func[7].functionData = NULL;
+	func[7].function = &fadeIn;
+	
+    func[8].name = (const uint8_t*) "init";
+	func[8].functionData = NULL;
+	func[8].function = &SNG_PKR_initStub;
     
 	*functionsToSet = func;
 	

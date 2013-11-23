@@ -76,10 +76,10 @@ package com.newpixel.air.nativeextensions
 		/**
 		 * Start playing a song based on persistent id 
 		 */		
-		public function playSong(songId:String="", position:Number=-1):void 
+		public function playSong(songId:String="", position:Number=0):void 
 		{
 			// songId is a string holding a 64-bit number, if an empty string is passed this is used to resume playing after a pause
-			// position is a playhead position in seconds, -1 to resume
+			// position is a playhead position in seconds
 			extContext.call( "playSong", songId, position );
 		}
 
@@ -97,6 +97,38 @@ package com.newpixel.air.nativeextensions
 		public function stopSong():void 
 		{
 			extContext.call( "stopSong" );
+		}
+
+		/**
+		 * Get current player volume 
+		 */		
+		public function getVolume():Number 
+		{
+			return Number(extContext.call( "getVolume" ));
+		}
+
+		/**
+		 * Set current player volume
+		 */		
+		public function setVolume(newVolume:Number):void 
+		{
+			extContext.call( "setVolume", newVolume );
+		}
+
+		/**
+		 * Fade out player volume
+		 */		
+		public function fadeOutSong(fadeTime:Number):void 
+		{
+			extContext.call( "fadeOut", fadeTime );
+		}
+
+		/**
+		 * Fade in player volume
+		 */		
+		public function fadeInSong(fadeTime:Number):void 
+		{
+			extContext.call( "fadeIn", fadeTime );
 		}
 		
 		/**

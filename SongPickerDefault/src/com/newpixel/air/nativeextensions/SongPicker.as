@@ -81,6 +81,38 @@ package com.newpixel.air.nativeextensions
 		}
 		
 		/**
+		 * Get current player volume 
+		 */		
+		public function getVolume():Number 
+		{
+			return 1;
+		}
+		
+		/**
+		 * Set current player volume
+		 */		
+		public function setVolume(newVolume:Number):void 
+		{
+			
+		}
+		
+		/**
+		 * Fade out player volume
+		 */		
+		public function fadeOutSong(fadeTime:Number):void 
+		{
+			
+		}
+		
+		/**
+		 * Fade in player volume
+		 */		
+		public function fadeInSong(fadeTime:Number):void 
+		{
+			
+		}
+		
+		/**
 		 * Cleans up the instance of the native extension. 
 		 */		
 		public function dispose():void 

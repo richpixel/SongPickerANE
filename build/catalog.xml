@@ -10,7 +10,7 @@
   </features>
   <libraries>
     <library path="library.swf">
-      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1359861057000" signatureChecksum="3212086602" >
+      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1384104125000" signatureChecksum="1854125777" >
         <def id="com.newpixel.air.nativeextensions:SongPicker" /> 
         <dep id="com.newpixel.air.nativeextensions:SongPickerEvent" type="e" /> 
         <dep id="trace" type="e" /> 
@@ -70,6 +70,12 @@
         <dep id="AS3" type="n" /> 
         <dep id="Object" type="i" /> 
       </script>
+      <script name="_f589fcb239fd4657ddf106070e57f8dbf588a06e72199a2f2d8a41101fc58c6c_flash_display_Sprite" mod="1384104134546" signatureChecksum="3109714623" >
+        <def id="_f589fcb239fd4657ddf106070e57f8dbf588a06e72199a2f2d8a41101fc58c6c_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
       <script name="com/adobe/serialization/json/EzJSON" mod="1340155156000" signatureChecksum="126694677" >
         <def id="com.adobe.serialization.json:EzJSON" /> 
         <dep id="com.adobe.serialization.json:JSONEncoder" type="e" /> 
@@ -77,14 +83,8 @@
         <dep id="AS3" type="n" /> 
         <dep id="Object" type="i" /> 
       </script>
-      <script name="_1e2c81b6a15a0cc17a51737e6790367e000eae76f6d22283f29ca1ba73962c05_flash_display_Sprite" mod="1359861058186" signatureChecksum="2934536521" >
-        <def id="_1e2c81b6a15a0cc17a51737e6790367e000eae76f6d22283f29ca1ba73962c05_flash_display_Sprite" /> 
-        <dep id="flash.system:Security" type="e" /> 
-        <dep id="AS3" type="n" /> 
-        <dep id="flash.display:Sprite" type="i" /> 
-      </script>
       <digests>
-        <digest type="SHA-256" signed="false" value="524a5a7da8cb4bac018e8556490046e414567d28d111c15007e9b1be634c6778"   />
+        <digest type="SHA-256" signed="false" value="975a07253d1e2cae22e3a9077eab31ae7249e9d7c895cbedf463d5a72c55c421"   />
       </digests>
     </library>
   </libraries>
