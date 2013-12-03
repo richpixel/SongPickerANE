@@ -50,7 +50,7 @@ static BOOL observingMediaEvents = NO;
     
     mediaPicker.delegate = self;
     mediaPicker.allowsPickingMultipleItems = NO;
-    
+
     // show media picker
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mediaPicker animated:YES completion:NULL];
     

@@ -9,11 +9,11 @@ The SongPicker Air Native Extension lets you choose a song from your music libra
 using the native media picker, and play it back using the native media player.
 
 #Notes:#
-- You must include the following line in the Android manifest section of your app config xml file to use the picker:
+- You must include the following lines in the Android manifest section of your app config xml file to use the picker:
 
-		<application>
-		<activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-		</application>
+	<application>
+	<activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+	</application>
 
 - You must specify the iOS SDK to build against when packaging an app for iOS. (ActionScript Build Packaging > Apple iOS > Native Extensions)
 
@@ -55,14 +55,25 @@ SongPicker class methods
 - stopSong():void
     Stop current song playback.
 
+- setVolume():void
+	Pass a Number between 0 and 1 to set the volume of the currently playing song.
+	
+- getVolume():Number
+	Returns a Number between 0 and 1 - the volume of the currently playing song.
+	
+- fadeOutSong(fadeTime:Number):void
+	Fade down the song's volume to 0 in fadeTime seconds.
+
+- fadeInSong(fadeTime:Number):void
+	Fade up the song's volume from 0 in fadeTime seconds.
+	
 SongPickerEvent
 
-- SONG_CHOSEN: Triggered when the user has selected a song from the media picker. The following properties will
-        be available in the event object:
-        - ID (String): persistent ID of the song. This is a 64-bit number on iOS and a URI on Android.
-        - title (String): title of track.
-        - artist (String): artist of track.
-        - duration (int): length of the track in seconds
+- SONG_CHOSEN: Triggered when the user has selected a song from the media picker. The following properties will be available in the event object:
+    - ID (String): persistent ID of the song. This is a 64-bit number on iOS and a URI on Android.
+    - title (String): title of track.
+    - artist (String): artist of track.
+    - duration (int): length of the track in seconds
 
 - CANCELLED_SONG_PICKER: User has cancelled picking a song.
 - SONG_FINISHED: Playback of current song has finished.

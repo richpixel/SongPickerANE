@@ -47,6 +47,10 @@ public class SongPickerExtensionContext extends FREContext
 		functions.put("playSong", new PlaySongFunction());
 		functions.put("pauseSong", new PauseSongFunction());
 		functions.put("stopSong", new StopSongFunction());
+		functions.put("getVolume", new GetVolumeFunction());
+		functions.put("setVolume", new SetVolumeFunction());
+		functions.put("fadeOut", new FadeOutSongFunction());
+		functions.put("fadeIn", new FadeInSongFunction());
 		
 		return functions;
 	}

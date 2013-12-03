@@ -38,6 +38,7 @@ public class SongPickerExtension implements FREExtension
 
 	// save our media player
 	public static MediaPlayer songMediaPlayer;
+	public static float currentVolume = 1.0f;
 	
 	@Override
 	public FREContext createContext(String contextType) 

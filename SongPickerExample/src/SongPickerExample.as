@@ -48,6 +48,7 @@ package
 		private var _buttons:ControlButtons;
 		private var _chosenSongID:String;
 		private var _timeStart:int;
+		private var _volume:Number;		// 0 - 1
 		
 		public function SongPickerExample()
 		{
@@ -92,6 +93,8 @@ package
 		{
 			SongPicker.instance.addEventListener(SongPickerEvent.SONG_FINISHED, songFinishedHandler);
 			SongPicker.instance.playSong(_chosenSongID);
+			
+			_volume = SongPicker.instance.getVolume();
 			
 			_buttons.playSong.visible = false;
 			_buttons.stopSong.visible = true;
@@ -154,17 +157,17 @@ package
 			SongPicker.instance.addEventListener(SongPickerEvent.CANCELLED_SONG_PICKER, cancelPickHandler);
 			
 			
+			trace("pickSong...");
 			SongPicker.instance.pickSong();
 			
 		}
 		
 		protected function volumeDownButtonHandler(event:MouseEvent):void
 		{
-			var volume:Number = SongPicker.instance.getVolume();
-			if (volume > 0)
+			if (_volume > 0)
 			{
-				volume -= 0.1;
-				SongPicker.instance.setVolume(volume);
+				_volume -= 0.1;
+				SongPicker.instance.setVolume(_volume);
 				setVolumeText();
 			}
 			
@@ -172,11 +175,10 @@ package
 
 		protected function volumeUpButtonHandler(event:MouseEvent):void
 		{
-			var volume:Number = SongPicker.instance.getVolume();
-			if (volume < 1)
+			if (_volume < 1)
 			{
-				volume += 0.1;
-				SongPicker.instance.setVolume(volume);
+				_volume += 0.1;
+				SongPicker.instance.setVolume(_volume);
 				setVolumeText();
 			}
 			

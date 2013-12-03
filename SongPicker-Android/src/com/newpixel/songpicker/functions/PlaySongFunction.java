@@ -82,6 +82,7 @@ public class PlaySongFunction implements FREFunction, OnCompletionListener {
 			mp.seekTo(seekPosition);
 			Log.d(TAG, "seekTo"+seekPosition);
 		}
+		mp.setVolume(SongPickerExtension.currentVolume, SongPickerExtension.currentVolume);
 		mp.start();
 		
 		
