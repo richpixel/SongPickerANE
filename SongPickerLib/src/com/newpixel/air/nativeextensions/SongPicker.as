@@ -65,6 +65,15 @@ package com.newpixel.air.nativeextensions
 		}
 
 		/**
+		 * Checks if native media picker is available 
+		 */		
+		public function isNativeMediaPickerAvailable():Boolean 
+		{
+			// 
+			return Boolean(extContext.call( "isNativeMediaPickerAvailable" ));
+		}
+
+		/**
 		 * Brings up native media picker on the phone to allow user to choose a song 
 		 */		
 		public function pickSong():void 

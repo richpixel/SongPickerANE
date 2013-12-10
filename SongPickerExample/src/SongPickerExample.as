@@ -70,20 +70,36 @@ package
 			_buttons = new ControlButtons();
 			_buttons.x = 20;
 			_buttons.y = 20;
-			
-			_buttons.pickSong.btn.addEventListener(MouseEvent.CLICK, pickSongButtonHandler);
-			_buttons.playSong.btn.addEventListener(MouseEvent.CLICK, playSongButtonHandler);
-			_buttons.stopSong.btn.addEventListener(MouseEvent.CLICK, stopSongButtonHandler);
-			_buttons.fadeOutSong.btn.addEventListener(MouseEvent.CLICK, fadeOutSongButtonHandler);
-				
-			_buttons.info.text = "Pick a song on your iOS or Android device...";
+
 			_buttons.playSong.visible = false;
 			_buttons.stopSong.visible = false;
 			_buttons.fadeOutSong.visible = false;
 			
-			_buttons.volDown.btn.addEventListener(MouseEvent.CLICK, volumeDownButtonHandler);
-			_buttons.volUp.btn.addEventListener(MouseEvent.CLICK, volumeUpButtonHandler);
-			setVolumeText();
+			// check for song picker
+			var canPick:Boolean = SongPicker.instance.isNativeMediaPickerAvailable();
+			if (!canPick)
+			{
+				// quick and dirty
+				_buttons.pickSong.visible = false;
+				_buttons.info.text = "A song picker is not available on this device.";
+				
+				_buttons.volDown.visible = false;
+				_buttons.volUp.visible = false;
+			}
+			else
+			{
+				_buttons.pickSong.btn.addEventListener(MouseEvent.CLICK, pickSongButtonHandler);
+				_buttons.playSong.btn.addEventListener(MouseEvent.CLICK, playSongButtonHandler);
+				_buttons.stopSong.btn.addEventListener(MouseEvent.CLICK, stopSongButtonHandler);
+				_buttons.fadeOutSong.btn.addEventListener(MouseEvent.CLICK, fadeOutSongButtonHandler);
+				
+				_buttons.info.text = "Pick a song on your iOS or Android device...";
+				
+				_buttons.volDown.btn.addEventListener(MouseEvent.CLICK, volumeDownButtonHandler);
+				_buttons.volUp.btn.addEventListener(MouseEvent.CLICK, volumeUpButtonHandler);
+				setVolumeText();
+				
+			}
 			
 			addChild(_buttons);
 						

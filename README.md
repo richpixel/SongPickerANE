@@ -36,7 +36,10 @@ Include the SongPicker.ane in your project.
 #API#
 
 SongPicker class methods
-  
+
+- isNativeMediaPickerAvailable():Boolean
+	Returns true if there is a native media picker on this device. This may return false on some Android devices, like the Kindle.
+	
 - pickSong():void
     Bring up the native media picker to allow a user to choose a song from his library. 
     Triggers the SongPickerEvent.SONG_CHOSEN or SongPickerEvent.CANCELLED_SONG_PICKER when the picker is dismissed.

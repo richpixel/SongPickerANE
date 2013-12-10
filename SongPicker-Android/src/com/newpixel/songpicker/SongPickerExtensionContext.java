@@ -51,6 +51,7 @@ public class SongPickerExtensionContext extends FREContext
 		functions.put("setVolume", new SetVolumeFunction());
 		functions.put("fadeOut", new FadeOutSongFunction());
 		functions.put("fadeIn", new FadeInSongFunction());
+		functions.put("isNativeMediaPickerAvailable", new IsNativeMediaPickerAvailableFunction());
 		
 		return functions;
 	}

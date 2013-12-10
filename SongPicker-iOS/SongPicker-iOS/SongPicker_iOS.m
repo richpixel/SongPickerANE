@@ -16,7 +16,7 @@
 #import "FlashRuntimeExtensions.h"
 #import "SongPickerHelper.h"
 
-#define N_FUNCTIONS (9)
+#define N_FUNCTIONS (10)
 
 SongPickerHelper *songPickerHelper;
 
@@ -121,6 +121,21 @@ FREObject fadeIn(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]
     
 }
 
+FREObject isNativeMediaPickerAvailable(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    
+    // assume all iOS devices have the media picker for now
+    BOOL mpAvailable = YES;
+    FREObject retVal;
+    if (FRENewObjectFromBool(mpAvailable, &retVal) == FRE_OK)
+    {
+        return retVal;
+    }
+    return NULL;
+        
+}
+
+
 //------------------------------------
 //
 // Required Methods.
@@ -187,10 +202,14 @@ void SNG_PKR_ContextInitializer(void* extData, const uint8_t* ctxType, FREContex
 	func[7].name = (const uint8_t*) "fadeIn";
 	func[7].functionData = NULL;
 	func[7].function = &fadeIn;
-	
-    func[8].name = (const uint8_t*) "init";
+
+	func[8].name = (const uint8_t*) "isNativeMediaPickerAvailable";
 	func[8].functionData = NULL;
-	func[8].function = &SNG_PKR_initStub;
+	func[8].function = &isNativeMediaPickerAvailable;
+	
+    func[9].name = (const uint8_t*) "init";
+	func[9].functionData = NULL;
+	func[9].function = &SNG_PKR_initStub;
     
 	*functionsToSet = func;
 	

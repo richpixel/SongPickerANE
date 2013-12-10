@@ -48,7 +48,13 @@ package com.newpixel.air.nativeextensions
 			
 			return _instance;
 		}
-				
+
+		public function isNativeMediaPickerAvailable():Boolean 
+		{
+			// 
+			return false;
+		}
+		
 		/**
 		 * Brings up native media picker on the phone to allow user to choose a song 
 		 */		

@@ -21,6 +21,7 @@ package com.newpixel.songpicker;
 
 import android.app.Activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -41,19 +42,30 @@ public class PickSongActivity extends Activity {
 		
 		Log.d(TAG, "PickSongActivity.onCreate");
 		
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_PICK);
-        intent.setData(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+		// Intent.ACTION_PICK must exist
+		try {
+	        Intent intent = new Intent();
+	        intent.setAction(Intent.ACTION_PICK);
+	        intent.setData(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+	        
+	        startActivityForResult(intent, PICK_SONG_REQUEST);
+		}
+	    catch (ActivityNotFoundException activityNotFoundException)
+	    {
+	        activityNotFoundException.printStackTrace();
+	    }
+	    catch (Exception otherException)
+	    {
+	        otherException.printStackTrace();
+	    }
         /*
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType("audio/music");
 		Intent c = Intent.createChooser(intent, "Pick a song");
 		*/
-        
-        startActivityForResult(intent, PICK_SONG_REQUEST);
 		
 	}
-	
+		
     @Override
     public void finish()
     {
