@@ -128,22 +128,32 @@ static BOOL observingMediaEvents = NO;
     }
     else
     {
-        // just play current song
+        // resume current song
+        // if a playbacktime > 0 is sent, set the playhead
+        
+        
         if (self.avAudioPlayer)
         {
-            self.avAudioPlayer.currentTime = playbackTime;
+            if (playbackTime > 0)
+            {
+                self.avAudioPlayer.currentTime = playbackTime;
+            }
+            
             if (!self.avAudioPlayer.playing)
             {
+                NSLog(@"resume AV song %f", playbackTime);
                 [self.avAudioPlayer play];
             }
             
         }
         else
         {
-            if (playbackTime >= 0)
+            if (playbackTime > 0)
             {
                 musicPlayer.currentPlaybackTime = playbackTime;
             }
+            
+            NSLog(@"resume MP song %f", playbackTime);
             [musicPlayer play];
         
         }
@@ -157,6 +167,12 @@ static BOOL observingMediaEvents = NO;
     {
         [self.avAudioPlayer pause];
     }
+    else
+    {
+        // for issue #3
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+        [musicPlayer pause];
+    }
 }
 
 -(void) stopSong
@@ -164,6 +180,12 @@ static BOOL observingMediaEvents = NO;
     if (self.avAudioPlayer)
     {
         [self.avAudioPlayer stop];
+    }
+    else
+    {
+        // for issue #3
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+        [musicPlayer stop];
     }
     
 }

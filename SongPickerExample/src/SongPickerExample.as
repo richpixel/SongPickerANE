@@ -50,6 +50,8 @@ package
 		private var _timeStart:int;
 		private var _volume:Number;		// 0 - 1
 		
+		private var _started:Boolean = false;
+		
 		public function SongPickerExample()
 		{
 			super();
@@ -108,7 +110,17 @@ package
 		protected function playSongButtonHandler(event:MouseEvent):void
 		{
 			SongPicker.instance.addEventListener(SongPickerEvent.SONG_FINISHED, songFinishedHandler);
-			SongPicker.instance.playSong(_chosenSongID);
+			if (_started)
+			{
+				// can use this to resume from a pause
+				trace("resume song");
+				SongPicker.instance.playSong();
+			}
+			else
+			{
+				SongPicker.instance.playSong(_chosenSongID);	
+			}
+			
 			
 			_volume = SongPicker.instance.getVolume();
 			
@@ -118,12 +130,19 @@ package
 			_buttons.fadeOutSong.alpha = 1.0;
 			_buttons.fadeOutSong.visible = true;
 			_buttons.fadeOutSong.enabled = true;
+			
+			//_started = true;
 		}
 
 		protected function stopSongButtonHandler(event:MouseEvent):void
 		{
 			SongPicker.instance.removeEventListener(SongPickerEvent.SONG_FINISHED, songFinishedHandler);
+			/*
+			SongPicker.instance.pauseSong();
+			trace("pause song");
+			*/
 			SongPicker.instance.stopSong();
+			trace("stop song");
 			
 			_buttons.playSong.visible = true;
 			_buttons.stopSong.visible = false;
@@ -224,6 +243,7 @@ package
 			_chosenSongID = event.ID;
 			
 			_buttons.playSong.visible = true;
+			_started = false;
 			
 			removeHandlers();
 		}
