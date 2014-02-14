@@ -10,14 +10,20 @@
   </features>
   <libraries>
     <library path="library.swf">
-      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1386717175000" signatureChecksum="983019666" >
+      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1386714456000" signatureChecksum="3779118936" >
         <def id="com.newpixel.air.nativeextensions:SongPicker" /> 
         <dep id="com.newpixel.air.nativeextensions:SongPickerEvent" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:EventDispatcher" type="i" /> 
         <dep id="Object" type="i" /> 
       </script>
-      <script name="com/newpixel/air/nativeextensions/SongPickerEvent" mod="1359850052000" signatureChecksum="2153618027" >
+      <script name="com/newpixel/air/nativeextensions/SongPickerEvent" mod="1392178440000" signatureChecksum="881828810" >
         <def id="com.newpixel.air.nativeextensions:SongPickerEvent" /> 
         <dep id="com.adobe.serialization.json:EzJSON" type="e" /> 
         <dep id="AS3" type="n" /> 
@@ -59,8 +65,8 @@
         <dep id="AS3" type="n" /> 
         <dep id="Object" type="i" /> 
       </script>
-      <script name="_34f423a57bd6cd38dfe0a986e1d4186041cbcf56c8a1ec49aee92c2e3c71f4a0_flash_display_Sprite" mod="1386717196459" signatureChecksum="2280750087" >
-        <def id="_34f423a57bd6cd38dfe0a986e1d4186041cbcf56c8a1ec49aee92c2e3c71f4a0_flash_display_Sprite" /> 
+      <script name="_8380ec5382af888d634d4061665970e1c54f850073474ce9d071e5bff235e17a_flash_display_Sprite" mod="1392179096726" signatureChecksum="4281890939" >
+        <def id="_8380ec5382af888d634d4061665970e1c54f850073474ce9d071e5bff235e17a_flash_display_Sprite" /> 
         <dep id="flash.system:Security" type="e" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.display:Sprite" type="i" /> 
@@ -78,7 +84,7 @@
         <dep id="Object" type="i" /> 
       </script>
       <digests>
-        <digest type="SHA-256" signed="false" value="8b9269c23564296db37e5347ec4444b75be35ce36413320a6e2f24418f18141b"   />
+        <digest type="SHA-256" signed="false" value="6fba0febaa3c3d5e4a1e5abd808b9bcb7c224d34de721fc5eee3ccb2537f162b"   />
       </digests>
     </library>
   </libraries>

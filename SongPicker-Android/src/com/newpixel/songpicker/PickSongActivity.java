@@ -100,6 +100,9 @@ public class PickSongActivity extends Activity {
                         int artistColumn = musiccursor.getColumnIndex(MediaStore.Audio.Media.ARTIST); 
                         eventPayload += ",\"artist\":\""+musiccursor.getString(artistColumn)+"\"";
 
+                        int albumColumn = musiccursor.getColumnIndex(MediaStore.Audio.Media.ALBUM); 
+                        eventPayload += ",\"albumTitle\":\""+musiccursor.getString(albumColumn)+"\"";
+                        
                         int durationColumn = musiccursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
                         eventPayload += ",\"duration\":"+Math.round(musiccursor.getInt(durationColumn)/1000);
                         

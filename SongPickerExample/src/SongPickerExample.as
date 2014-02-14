@@ -237,6 +237,7 @@ package
 			var msg:String = "ID: "+event.ID+"\n";
 			msg += "title: "+event.title+"\n";
 			msg += "artist: "+event.artist+"\n";
+			msg += "albumTitle: "+event.albumTitle+"\n";
 			msg += "duration: ("+minutes+":"+((seconds < 10) ? "0"+seconds : seconds)+")";
 			
 			_buttons.info.text = msg; 

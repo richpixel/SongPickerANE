@@ -34,6 +34,7 @@ package com.newpixel.air.nativeextensions
 		public var ID:String;
 		public var title:String;
 		public var artist:String;
+		public var albumTitle:String;
 		public var duration:int;
 		
 		////////////////////////////////////////////////////////////
@@ -52,6 +53,7 @@ package com.newpixel.air.nativeextensions
 					ID = valuePairs.ID;
 					title = valuePairs.title;
 					artist = valuePairs.artist;
+					albumTitle = valuePairs.albumTitle;
 					duration = valuePairs.duration;
 				}
 			}
