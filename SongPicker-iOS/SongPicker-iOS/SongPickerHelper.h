@@ -24,7 +24,7 @@
 }
 
 // ANE functions
--(void) pickSongFromMediaLibrary;
+-(void) pickSongFromMediaLibrary:(BOOL)downloadedSongsOnly;
 -(void) playSong:(NSNumber *)pid playheadPosition:(double)playbackTime;
 -(void) pauseSong;
 -(void) stopSong;
@@ -36,4 +36,5 @@
 
 @property (nonatomic, retain) AVAudioPlayer *avAudioPlayer;
 @property (nonatomic) float volume;
+@property (nonatomic) double playheadTime;
 @end

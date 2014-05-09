@@ -103,6 +103,22 @@ package com.newpixel.air.nativeextensions
 		}
 		
 		/**
+		 * Get current playhead position of playing song in seconds
+		 */				
+		public function getPlayheadTime():Number 
+		{
+			return 0;
+		}
+		
+		/**
+		 * Set current playhead position of playing song in seconds
+		 */		
+		public function setPlayheadTime(newPlayheadTime:Number):void 
+		{
+			
+		}
+		
+		/**
 		 * Fade out player volume
 		 */		
 		public function fadeOutSong(fadeTime:Number):void 

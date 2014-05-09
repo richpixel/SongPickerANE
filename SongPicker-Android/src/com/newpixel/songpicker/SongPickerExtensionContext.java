@@ -49,6 +49,8 @@ public class SongPickerExtensionContext extends FREContext
 		functions.put("stopSong", new StopSongFunction());
 		functions.put("getVolume", new GetVolumeFunction());
 		functions.put("setVolume", new SetVolumeFunction());
+		functions.put("getPlayheadTime", new GetPlayheadTimeFunction());
+		functions.put("setPlayheadTime", new SetPlayheadTimeFunction());
 		functions.put("fadeOut", new FadeOutSongFunction());
 		functions.put("fadeIn", new FadeInSongFunction());
 		functions.put("isNativeMediaPickerAvailable", new IsNativeMediaPickerAvailableFunction());

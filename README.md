@@ -11,13 +11,12 @@ using the native media picker, and play it back using the native media player.
 #Notes:#
 - You must include the following lines in the Android manifest section of your app config xml file to use the picker:
 
-	<application>
-	<activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-	</application>
+<application>
+<activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+</application>
 
 - You must specify the iOS SDK to build against when packaging an app for iOS. (ActionScript Build Packaging > Apple iOS > Native Extensions)
 
-- On iOS it seems to intermittently crash if you try to init the SongPicker too soon after the app starts running. Try waiting for user interaction.
 
 #Usage#
 
@@ -40,10 +39,12 @@ SongPicker class methods
 - isNativeMediaPickerAvailable():Boolean
 	Returns true if there is a native media picker on this device. This may return false on some Android devices, like the Kindle.
 	
-- pickSong():void
+- pickSong(downloadedSongsOnly:Boolean=true):void
     Bring up the native media picker to allow a user to choose a song from his library. 
     Triggers the SongPickerEvent.SONG_CHOSEN or SongPickerEvent.CANCELLED_SONG_PICKER when the picker is dismissed.
-  
+  	Args:
+  	  - downloadedSongsOnly: If true, the device will only show songs that are downloaded on the device, and ignore those in the cloud.
+  	  
 - playSong(songId:String="", position:Number=-1):void
     Begin playing a song with the specified ID, or resume playing the current song if songId is "".
     Args:
@@ -63,6 +64,12 @@ SongPicker class methods
 	
 - getVolume():Number
 	Returns a Number between 0 and 1 - the volume of the currently playing song.
+
+- setPlayheadTime():void
+	Pass a Number in seconds to set the playhead of the currently playing song.
+	
+- getPlayheadTime():Number
+	Returns a Number in seconds - the playhead of the currently playing song.
 	
 - fadeOutSong(fadeTime:Number):void
 	Fade down the song's volume to 0 in fadeTime seconds.

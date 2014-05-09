@@ -43,14 +43,15 @@ static BOOL observingMediaEvents = NO;
 	return self;
 }
 
--(void) pickSongFromMediaLibrary
+-(void) pickSongFromMediaLibrary:(BOOL)downloadedSongsOnly
 {
     // Bring up a media picker and allow user to choose 1 song
     MPMediaPickerController *mediaPicker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeMusic];
     
     mediaPicker.delegate = self;
     mediaPicker.allowsPickingMultipleItems = NO;
-
+    mediaPicker.showsCloudItems = !downloadedSongsOnly;
+    
     // show media picker
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mediaPicker animated:YES completion:NULL];
     
@@ -216,6 +217,31 @@ static BOOL observingMediaEvents = NO;
         MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
         musicPlayer.volume = _volume;
         */
+    }
+}
+
+-(double) playheadTime
+{
+    if (self.avAudioPlayer)
+    {
+        return self.avAudioPlayer.currentTime;
+    }
+    
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+    return musicPlayer.currentPlaybackTime;
+    
+}
+
+-(void) setPlayheadTime:(double)playheadTime
+{
+    if (self.avAudioPlayer)
+    {
+        self.avAudioPlayer.currentTime = playheadTime;
+    }
+    else
+    {
+         MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+         musicPlayer.currentPlaybackTime = playheadTime;
     }
 }
 

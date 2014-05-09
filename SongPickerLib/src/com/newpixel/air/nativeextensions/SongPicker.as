@@ -75,20 +75,21 @@ package com.newpixel.air.nativeextensions
 
 		/**
 		 * Brings up native media picker on the phone to allow user to choose a song 
+		 * downloadedSongsOnly: If false, iOS can show iCloud songs; has no effect in Android currently
 		 */		
-		public function pickSong():void 
+		public function pickSong(downloadedSongsOnly:Boolean=true):void 
 		{
 			// user picks a MediaItem and the extension sends an event with an identifier
-			extContext.call( "pickSong" );
+			extContext.call( "pickSong", downloadedSongsOnly );
 		}
 
 		/**
-		 * Start playing a song based on persistent id 
+		 * Start playing a song based on persistent id
+		 * songId is a string holding a 64-bit number, if an empty string is passed this is used to resume playing after a pause
+		 * position is a playhead position in seconds
 		 */		
 		public function playSong(songId:String="", position:Number=0):void 
 		{
-			// songId is a string holding a 64-bit number, if an empty string is passed this is used to resume playing after a pause
-			// position is a playhead position in seconds
 			extContext.call( "playSong", songId, position );
 		}
 
@@ -122,6 +123,22 @@ package com.newpixel.air.nativeextensions
 		public function setVolume(newVolume:Number):void 
 		{
 			extContext.call( "setVolume", newVolume );
+		}
+
+		/**
+		 * Get current playhead position of playing song in seconds
+		 */		
+		public function getPlayheadTime():Number 
+		{
+			return Number(extContext.call( "getPlayheadTime" ));
+		}
+		
+		/**
+		 * Set current playhead position of playing song in seconds
+		 */		
+		public function setPlayheadTime(newPlayheadTime:Number):void 
+		{
+			extContext.call( "setPlayheadTime", newPlayheadTime );
 		}
 
 		/**

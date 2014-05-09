@@ -132,21 +132,15 @@ package
 			_buttons.fadeOutSong.enabled = true;
 			
 			//_started = true;
+			// for playhead position
+			addEventListener(Event.ENTER_FRAME, checkPlayhead);
 		}
 
 		protected function stopSongButtonHandler(event:MouseEvent):void
 		{
-			SongPicker.instance.removeEventListener(SongPickerEvent.SONG_FINISHED, songFinishedHandler);
-			/*
-			SongPicker.instance.pauseSong();
-			trace("pause song");
-			*/
 			SongPicker.instance.stopSong();
 			trace("stop song");
-			
-			_buttons.playSong.visible = true;
-			_buttons.stopSong.visible = false;
-			_buttons.fadeOutSong.visible = false;
+			songFinishedHandler(null);
 		}
 
 		protected function fadeOutSongButtonHandler(event:MouseEvent):void
@@ -226,6 +220,11 @@ package
 			trace("Current volume: ", volume);
 		}
 		
+		protected function checkPlayhead(e:Event):void
+		{
+			_buttons.playheadTxt.text = "Playhead: "+Math.round(SongPicker.instance.getPlayheadTime()*100)/100;
+		}
+		
 		// SongPicker event handlers
 		protected function songChooseHandler(event:SongPickerEvent):void
 		{
@@ -260,7 +259,9 @@ package
 		
 			_buttons.playSong.visible = true;
 			_buttons.stopSong.visible = false;
-			
+			_buttons.fadeOutSong.visible = false;
+		
+			removeEventListener(Event.ENTER_FRAME, checkPlayhead);	
 		}
 		
 		private function removeHandlers():void

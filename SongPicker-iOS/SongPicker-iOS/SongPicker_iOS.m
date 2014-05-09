@@ -16,7 +16,7 @@
 #import "FlashRuntimeExtensions.h"
 #import "SongPickerHelper.h"
 
-#define N_FUNCTIONS (10)
+#define N_FUNCTIONS (12)
 
 SongPickerHelper *songPickerHelper;
 
@@ -27,7 +27,11 @@ SongPickerHelper *songPickerHelper;
 //------------------------------------
 FREObject pickSong(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 {
-    [songPickerHelper pickSongFromMediaLibrary];
+    // get the bool value out for 'downloadedSongsOnly'
+    uint32_t downloadedSongsOnly;
+    FREGetObjectAsBool(argv[0], &downloadedSongsOnly);
+    
+    [songPickerHelper pickSongFromMediaLibrary:downloadedSongsOnly];
     
     return NULL;
 }
@@ -90,6 +94,31 @@ FREObject setVolume(FREContext ctx, void* funcData, uint32_t argc, FREObject arg
     
     // call helper to set the volume
     songPickerHelper.volume = volume;
+    
+    return NULL;
+    
+}
+
+FREObject getPlayheadTime(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    double playheadTime = songPickerHelper.playheadTime;
+    FREObject retVal;
+    if (FRENewObjectFromDouble(playheadTime, &retVal) == FRE_OK)
+    {
+        return retVal;
+    }
+    return NULL;
+    
+}
+
+FREObject setPlayheadTime(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+{
+    // get the double from the FREObject arg
+    double playheadTime;
+    FREGetObjectAsDouble(argv[0], &playheadTime);
+    
+    // call helper to set the volume
+    songPickerHelper.playheadTime = playheadTime;
     
     return NULL;
     
@@ -167,7 +196,7 @@ FREObject SNG_PKR_initStub(FREContext ctx, void* funcData, uint32_t argc, FREObj
 void SNG_PKR_ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
                                 uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet)
 {
-    //we expose two methods to ActionScript
+    //we expose these methods to ActionScript
 	*numFunctionsToTest = N_FUNCTIONS ;
     
 	FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * N_FUNCTIONS);
@@ -195,21 +224,29 @@ void SNG_PKR_ContextInitializer(void* extData, const uint8_t* ctxType, FREContex
 	func[5].functionData = NULL;
 	func[5].function = &setVolume;
 
-	func[6].name = (const uint8_t*) "fadeOut";
+    func[6].name = (const uint8_t*) "getPlayheadTime";
 	func[6].functionData = NULL;
-	func[6].function = &fadeOut;
-
-	func[7].name = (const uint8_t*) "fadeIn";
+	func[6].function = &getPlayheadTime;
+    
+	func[7].name = (const uint8_t*) "setPlayheadTime";
 	func[7].functionData = NULL;
-	func[7].function = &fadeIn;
+	func[7].function = &setPlayheadTime;
 
-	func[8].name = (const uint8_t*) "isNativeMediaPickerAvailable";
+	func[8].name = (const uint8_t*) "fadeOut";
 	func[8].functionData = NULL;
-	func[8].function = &isNativeMediaPickerAvailable;
-	
-    func[9].name = (const uint8_t*) "init";
+	func[8].function = &fadeOut;
+
+	func[9].name = (const uint8_t*) "fadeIn";
 	func[9].functionData = NULL;
-	func[9].function = &SNG_PKR_initStub;
+	func[9].function = &fadeIn;
+
+	func[10].name = (const uint8_t*) "isNativeMediaPickerAvailable";
+	func[10].functionData = NULL;
+	func[10].function = &isNativeMediaPickerAvailable;
+	
+    func[11].name = (const uint8_t*) "init";
+	func[11].functionData = NULL;
+	func[11].function = &SNG_PKR_initStub;
     
 	*functionsToSet = func;
 	

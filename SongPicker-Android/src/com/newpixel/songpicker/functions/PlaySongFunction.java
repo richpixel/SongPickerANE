@@ -70,7 +70,7 @@ public class PlaySongFunction implements FREFunction, OnCompletionListener {
 		// check position
 		int seekPosition = -1;
 		try {
-			seekPosition = args[1].getAsInt()*1000;
+			seekPosition = (int)(args[1].getAsDouble()*1000);
 		}
 		catch (Exception e)
 		{
