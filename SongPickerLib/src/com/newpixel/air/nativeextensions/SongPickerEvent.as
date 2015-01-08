@@ -18,8 +18,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 */
 package com.newpixel.air.nativeextensions
 {
-	import flash.events.Event;
 	import com.adobe.serialization.json.EzJSON;
+	
+	import flash.events.Event;
 	
 	public class SongPickerEvent extends Event
 	{
@@ -36,6 +37,7 @@ package com.newpixel.air.nativeextensions
 		public var artist:String;
 		public var albumTitle:String;
 		public var duration:int;
+		public var url:String;
 		
 		////////////////////////////////////////////////////////////
 		// CONSTRUCTOR				
@@ -55,6 +57,7 @@ package com.newpixel.air.nativeextensions
 					artist = valuePairs.artist;
 					albumTitle = valuePairs.albumTitle;
 					duration = valuePairs.duration;
+					url = valuePairs.url;
 				}
 			}
 		}

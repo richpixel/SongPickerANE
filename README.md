@@ -11,6 +11,8 @@ using the native media picker, and play it back using the native media player.
 #Notes:#
 - You must include the following lines in the Android manifest section of your app config xml file to use the picker:
 
+  ...
+	
 <application>
 <activity android:name="com.newpixel.songpicker.PickSongActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 </application>
@@ -22,8 +24,8 @@ using the native media picker, and play it back using the native media player.
 
 Include the SongPicker.ane in your project.
 
-  import com.newpixel.air.nativeextensions.SongPicker;
-	import com.newpixel.air.nativeextensions.SongPickerEvent;
+import com.newpixel.air.nativeextensions.SongPicker;
+import com.newpixel.air.nativeextensions.SongPickerEvent;
 
   ...
 

@@ -354,9 +354,10 @@ static BOOL observingMediaEvents = NO;
     NSString *artist = [pickedItem valueForProperty:MPMediaItemPropertyArtist];
     NSString *album = [pickedItem valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSNumber *duration = [pickedItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSString *url = [pickedItem valueForProperty:MPMediaItemPropertyAssetURL];
     
     // Return a JSON string
-    NSString *chosenSong = [NSString stringWithFormat:@"{\"ID\":\"%@\",\"title\":\"%@\",\"artist\":\"%@\",\"albumTitle\":\"%@\",\"duration\":%d}", ID, title, artist, album, [duration intValue]];
+    NSString *chosenSong = [NSString stringWithFormat:@"{\"ID\":\"%@\",\"title\":\"%@\",\"artist\":\"%@\",\"albumTitle\":\"%@\",\"duration\":%d,\"url\":\"%@\"}", ID, title, artist, album, [duration intValue], url];
  
     [mediaPicker dismissViewControllerAnimated:YES completion:NULL];
 

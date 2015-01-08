@@ -235,9 +235,10 @@ package
 			
 			var msg:String = "ID: "+event.ID+"\n";
 			msg += "title: "+event.title+"\n";
-			msg += "artist: "+event.artist+"\n";
-			msg += "albumTitle: "+event.albumTitle+"\n";
-			msg += "duration: ("+minutes+":"+((seconds < 10) ? "0"+seconds : seconds)+")";
+			//msg += "artist: "+event.artist+"\n";
+			//msg += "albumTitle: "+event.albumTitle+"\n";
+			//msg += "duration: ("+minutes+":"+((seconds < 10) ? "0"+seconds : seconds)+")\n";
+			msg += "url: "+event.url;
 			
 			_buttons.info.text = msg; 
 			_chosenSongID = event.ID;

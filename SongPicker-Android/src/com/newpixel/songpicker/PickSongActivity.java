@@ -106,6 +106,22 @@ public class PickSongActivity extends Activity {
                         int durationColumn = musiccursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
                         eventPayload += ",\"duration\":"+Math.round(musiccursor.getInt(durationColumn)/1000);
                         
+                        // get actual path to file
+                        Cursor cursor = null;
+                        String fullPath;
+                        try { 
+                          String[] proj = { MediaStore.Images.Media.DATA };
+                          cursor = SongPickerExtension.appContext.getContentResolver().query(songUri, proj, null, null, null);
+                          int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                          cursor.moveToFirst();
+                          fullPath = cursor.getString(column_index);
+                        } finally {
+                          if (cursor != null) {
+                            cursor.close();
+                          }
+                        }                        
+                        eventPayload += ",\"url\":\""+fullPath+"\"";
+                        
                     }                                   
                 }
                 finally

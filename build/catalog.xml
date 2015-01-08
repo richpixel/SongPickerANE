@@ -10,18 +10,30 @@
   </features>
   <libraries>
     <library path="library.swf">
-      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1399499990000" signatureChecksum="2304952474" >
+      <script name="com/newpixel/air/nativeextensions/SongPicker" mod="1399500094000" signatureChecksum="3682329319" >
         <def id="com.newpixel.air.nativeextensions:SongPicker" /> 
         <dep id="com.newpixel.air.nativeextensions:SongPickerEvent" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:EventDispatcher" type="i" /> 
         <dep id="Object" type="i" /> 
       </script>
-      <script name="com/newpixel/air/nativeextensions/SongPickerEvent" mod="1359850052000" signatureChecksum="2153618027" >
+      <script name="com/newpixel/air/nativeextensions/SongPickerEvent" mod="1400592235000" signatureChecksum="4287801961" >
         <def id="com.newpixel.air.nativeextensions:SongPickerEvent" /> 
         <dep id="com.adobe.serialization.json:EzJSON" type="e" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="_d4cbeaa6b3c670d10fd7e44ebccba0f14ab5bf95938bb67ef535dc41fea30d9e_flash_display_Sprite" mod="1400592235735" signatureChecksum="780631605" >
+        <def id="_d4cbeaa6b3c670d10fd7e44ebccba0f14ab5bf95938bb67ef535dc41fea30d9e_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
       </script>
       <script name="com/adobe/serialization/json/JSONTokenType" mod="1289250120000" signatureChecksum="11639122" >
         <def id="com.adobe.serialization.json:JSONTokenType" /> 
@@ -64,12 +76,6 @@
         <dep id="AS3" type="n" /> 
         <dep id="Object" type="i" /> 
       </script>
-      <script name="_781f10fd6ac680b5af098bf662c35adf7a57340c2753f4089ae979223c2f6951_flash_display_Sprite" mod="1399500023887" signatureChecksum="4223367571" >
-        <def id="_781f10fd6ac680b5af098bf662c35adf7a57340c2753f4089ae979223c2f6951_flash_display_Sprite" /> 
-        <dep id="flash.system:Security" type="e" /> 
-        <dep id="AS3" type="n" /> 
-        <dep id="flash.display:Sprite" type="i" /> 
-      </script>
       <script name="com/adobe/serialization/json/EzJSON" mod="1340155156000" signatureChecksum="126694677" >
         <def id="com.adobe.serialization.json:EzJSON" /> 
         <dep id="com.adobe.serialization.json:JSONEncoder" type="e" /> 
@@ -78,7 +84,7 @@
         <dep id="Object" type="i" /> 
       </script>
       <digests>
-        <digest type="SHA-256" signed="false" value="00e959e83ed6f1b36372c0ea727502ed7508c4748e796ce0638df9b5beab2b99"   />
+        <digest type="SHA-256" signed="false" value="b0a5e5a935933411ea1ad6b6d209dab03a2fb0a980bcc09b1dacfe50f575a438"   />
       </digests>
     </library>
   </libraries>

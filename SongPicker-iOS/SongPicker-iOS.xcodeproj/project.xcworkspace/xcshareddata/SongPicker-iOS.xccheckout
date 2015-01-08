@@ -10,29 +10,29 @@
 	<string>SongPicker-iOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4D586D62-C2F4-490C-929E-87AB70D9042E</key>
+		<key>C54C0D90B1DEC3857DC8AB2A7E20E5AB12DEE8F3</key>
 		<string>https://github.com/richpixel/SongPickerANE.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SongPicker-iOS/SongPicker-iOS.xcodeproj/project.xcworkspace</string>
+	<string>SongPicker-iOS/SongPicker-iOS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4D586D62-C2F4-490C-929E-87AB70D9042E</key>
+		<key>C54C0D90B1DEC3857DC8AB2A7E20E5AB12DEE8F3</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/richpixel/SongPickerANE.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4D586D62-C2F4-490C-929E-87AB70D9042E</string>
+	<string>C54C0D90B1DEC3857DC8AB2A7E20E5AB12DEE8F3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4D586D62-C2F4-490C-929E-87AB70D9042E</string>
+			<string>C54C0D90B1DEC3857DC8AB2A7E20E5AB12DEE8F3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SongPickerANE</string>
 		</dict>
