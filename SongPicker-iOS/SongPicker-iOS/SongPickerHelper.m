@@ -97,6 +97,7 @@ static BOOL observingMediaEvents = NO;
         // Therefore, use the AVAudioPlayer where possible. However AVAudioPlayer will fail for DRM protected conent.
         // Fallback to MPMusicPlayerController in that case and hope it works
         NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
+        
         if (url)
         {
             self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
@@ -334,7 +335,7 @@ static BOOL observingMediaEvents = NO;
     // other than 0 indicates the song has finished
     if (musicPlayer.playbackState == MPMusicPlaybackStateStopped && musicPlayer.indexOfNowPlayingItem != 0)
     {
-        NSString *indexStr = [NSString stringWithFormat:@"%d", musicPlayer.indexOfNowPlayingItem];
+        NSString *indexStr = [NSString stringWithFormat:@"%lu", (unsigned long)musicPlayer.indexOfNowPlayingItem];
         FREDispatchStatusEventAsync(_context, (uint8_t*)[eventSongFinished UTF8String], (uint8_t*)[indexStr UTF8String]);
     }
     
